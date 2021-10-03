@@ -26,6 +26,8 @@ class GameBoard {
 
             div.classList.add('square', CLASS_LIST[square]);
             div.style.cssText = `width: ${CELL_SIZE}px; height: ${CELL_SIZE}px;`;
+
+            this.DOMGrid.appendChild(div);
         })
     }
 }
