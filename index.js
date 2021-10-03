@@ -1,7 +1,7 @@
 import { LEVEL, OBJECT_TYPE } from './setup';
 
 // Classes
-import GameBoard from './GameBoard'
+import GameBoard from './GameBoard';
 
 // DOM Elements from index.html
 const gameGrid = document.querySelector('#gameGrid');
