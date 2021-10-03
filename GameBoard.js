@@ -8,6 +8,8 @@ class GameBoard {
     }
 
     showGameStatus(gameWin) {
-        
+        const div = document.createElement('div');
+
+        div.classList.add('game-status')
     }
 }
