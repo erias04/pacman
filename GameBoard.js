@@ -12,5 +12,6 @@ class GameBoard {
 
         div.classList.add('game-status');
         div.innerHTML = `${gameWin ? 'WIN' : 'GAME OVER!'}`;
+        this.DOMGrid.appendChild(div);
     }
 }
