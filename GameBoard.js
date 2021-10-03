@@ -17,5 +17,7 @@ class GameBoard {
 
     createGrid(level) {
         this.dotCount = 0;
+        this.grid = [];
+        this.DOMGrid.innerHTML = '';
     }
 }
