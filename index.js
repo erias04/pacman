@@ -14,3 +14,4 @@ let score = 0;
 let timer = null;
 let gameWin = false;
 let powerPillActive = false;
+let powerPillTimer = null;
