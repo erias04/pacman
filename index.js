@@ -10,3 +10,7 @@ const POWER_PILL_TIME = 10000; // milliseconds
 const GLOBAL_SPEED = 80; // milliseconds
 
 // Initial setup
+let score = 0;
+let timer = null;
+let gameWin = false;
+let powerPillActive = false;
