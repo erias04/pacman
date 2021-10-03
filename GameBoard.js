@@ -20,5 +20,11 @@ class GameBoard {
         this.grid = [];
         this.DOMGrid.innerHTML = '';
         this.DOMGrid.style.cssText = `grid-template-columns: repeat(${GRID_SIZE}, ${CELL_SIZE}px)`;
+
+        level.forEach((square, i) => {
+            const div = createElement('div');
+
+            div.classList.add('square', CLASS_LIST[square]);
+        })
     }
 }
