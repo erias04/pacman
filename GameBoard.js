@@ -25,6 +25,7 @@ class GameBoard {
             const div = createElement('div');
 
             div.classList.add('square', CLASS_LIST[square]);
+            div.style.cssText = `width: ${CELL_SIZE}px; height: ${CELL_SIZE}px;`;
         })
     }
 }
