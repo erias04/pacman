@@ -1,2 +1,9 @@
+// Weird MacOS files
 .DS_Store
+
+//packages we need for nodejs (install with npm install)
 node_modules
+
+// created by npm start:
+.cache
+dist
