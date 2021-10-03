@@ -28,6 +28,7 @@ class GameBoard {
             div.style.cssText = `width: ${CELL_SIZE}px; height: ${CELL_SIZE}px;`;
 
             this.DOMGrid.appendChild(div);
+            this.grid.push(div);
         })
     }
 }
