@@ -8,3 +8,5 @@ const startButton = document.querySelector('#start-button');
 // Game Constants
 const POWER_PILL_TIME = 10000; // milliseconds
 const GLOBAL_SPEED = 80; // milliseconds
+
+// Initial setup
