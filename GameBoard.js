@@ -14,4 +14,8 @@ class GameBoard {
         div.innerHTML = `${gameWin ? 'WIN' : 'GAME OVER!'}`;
         this.DOMGrid.appendChild(div);
     }
+
+    createGrid(level) {
+        
+    }
 }
