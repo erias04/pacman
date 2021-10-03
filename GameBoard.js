@@ -6,4 +6,8 @@ class GameBoard {
         this.grid = [];
         this.DOMGrid = DOMGrid;
     }
+
+    showGameStatus(gameWin) {
+        
+    }
 }
