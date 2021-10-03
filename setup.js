@@ -1,5 +1,8 @@
+// Defines max-width and max-height in px
 export const GRID_SIZE = 20;
 export const CELL_SIZE = 20;
+
+// Defines movement types for pacman
 export const DIRECTIONS = {
   ArrowLeft: {
     code: 37,
@@ -23,6 +26,7 @@ export const DIRECTIONS = {
   }
 };
 
+// Defines elements
 export const OBJECT_TYPE = {
   BLANK: 'blank',
   WALL: 'wall',
@@ -39,6 +43,7 @@ export const OBJECT_TYPE = {
 };
 
 // Lookup array for classes
+// Used to set Levels
 export const CLASS_LIST = [
   OBJECT_TYPE.BLANK, // 0
   OBJECT_TYPE.WALL, // 1
@@ -53,6 +58,7 @@ export const CLASS_LIST = [
 ];
 
 // prettier-ignore
+// Used to create 
 export const LEVEL = [
   1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
   1, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 1,
