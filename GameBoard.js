@@ -11,5 +11,6 @@ class GameBoard {
         const div = document.createElement('div');
 
         div.classList.add('game-status')
+        div.innerHTML = `${gameWin ? 'WIN' : 'GAME OVER!'}`
     }
 }
