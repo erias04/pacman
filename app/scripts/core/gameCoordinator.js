@@ -468,7 +468,12 @@ class GameCoordinator {
       this.fruit,
     ];
 
-    this.ghosts = [this.blinky, this.pinky, this.inky, this.clyde];
+    this.ghosts = [
+      this.blinky, 
+      this.pinky, 
+      this.inky, 
+      this.clyde
+    ];
 
     this.scaredGhosts = [];
     this.eyeGhosts = 0;

@@ -38,6 +38,7 @@ class GameEngine {
     }
     this.framesThisSecond += 1;
     this.fpsDisplay.textContent = `${Math.round(this.fps)} FPS`;
+    // console.log(`${Math.round(this.fps)} FPS`)
   }
 
   /**
