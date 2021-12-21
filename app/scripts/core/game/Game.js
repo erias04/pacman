@@ -1,10 +1,13 @@
 import TileMap from '../map/TileMap.js'
 
 const tileSize = 32;
+// How many tiles PacMan moves
+const velocity = 1;
 
 const canvas = document.getElementById('gameCanvas');
 const ctx = canvas.getContext('2d');
 const tileMap = new TileMap(tileSize);
+const pacman = tileMap.getPacman(velocity);
 
 function gameLoop() {
     tileMap.draw(ctx);
