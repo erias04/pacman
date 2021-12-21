@@ -63,6 +63,7 @@ export default class TileMap{
             for (let column = 0; column < this.map[row].length; column++) {
                 let tile = this.map[row][column];
                 if (tile === 4) {
+                    // Replace Pacman start with a yellowDot
                     this.map[row][column] = 0;
                     // return new Pacman
                 }
