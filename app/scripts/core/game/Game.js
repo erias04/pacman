@@ -11,6 +11,7 @@ const pacman = tileMap.getPacman(velocity);
 
 function gameLoop() {
     tileMap.draw(ctx);
+    pacman.draw(ctx);
 }
 
 tileMap.setCanvasSize(canvas);
