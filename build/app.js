@@ -1,4 +1,4 @@
-console.log('Hello World');
 
 
+const canvas = document.getElementById('gameCanvas');
 
