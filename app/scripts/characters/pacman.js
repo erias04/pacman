@@ -79,6 +79,9 @@ export default class Pacman {
         }
 
         if (this.tileMap.didCollideWithEnvironment(this.x, this.y, this.currentMovingDirection)) {
+            this.pacmanAnimationTimer = null;
+            // Force Pacman to half open his mouth (if commanded out, random index is being presentet)
+            this.pacmanImageIndex = 1;
             return;
         }
         else if (this.currentMovingDirection != null && this.pacmanAnimationTimer == null) {
