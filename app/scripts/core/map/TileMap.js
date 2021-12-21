@@ -9,6 +9,10 @@ export default class TileMap{
         this.wall.src = '/app/style/graphics/wall.png';
     }
 
+    /*  1 = Wall
+        0 = Dot
+        4 = PacMan
+    */
     map = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
