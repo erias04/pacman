@@ -22,5 +22,9 @@ export default class Pacman {
 
         const pacmanImage4 = new Image();
         pacmanImage4.src ='/app/style/graphics/pac1.png'
+
+        this.pacmanImages = [pacmanImage1, pacmanImage2, pacmanImage3, pacmanImage4]
+
+        this.pacmanImageIndex = 0;
     }
 }  
