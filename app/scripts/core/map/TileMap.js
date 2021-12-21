@@ -25,7 +25,10 @@ export default class TileMap{
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
-    draw() {
-        // console.log('draw');
+    draw(ctx) { }
+    
+
+    setCanvasSize(canvas) {
+        canvas.width = this.map[0].length * this.tileSize;
     }
 }
