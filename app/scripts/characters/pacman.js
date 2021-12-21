@@ -12,28 +12,32 @@ export default class Pacman {
         this.requestedMovingDirection = null;
         document.addEventListener('keydown', this.#keydown);
 
+        this.pacmanAnimationTimerDefault = 10;
+        this.pacmanAnimationTimer = null;
+
         this.#loadPacmanImages();
     }
     
     draw(ctx) {
         this.#move();
+        this.#animate();
         ctx.drawImage(this.pacmanImages[this.pacmanImageIndex], this.x, this.y, this.tileSize, this.tileSize)
     }
 
     #loadPacmanImages() {
         const pacmanImage1 = new Image();
-        pacmanImage1.src ='/app/style/graphics/pac0.png'
+        pacmanImage1.src ='/app/style/graphics/pac0.png';
 
         const pacmanImage2 = new Image();
-        pacmanImage2.src ='/app/style/graphics/pac1.png'
+        pacmanImage2.src ='/app/style/graphics/pac1.png';
 
         const pacmanImage3 = new Image();
-        pacmanImage3.src ='/app/style/graphics/pac2.png'
+        pacmanImage3.src ='/app/style/graphics/pac2.png';
 
         const pacmanImage4 = new Image();
-        pacmanImage4.src ='/app/style/graphics/pac1.png'
+        pacmanImage4.src ='/app/style/graphics/pac1.png';
 
-        this.pacmanImages = [pacmanImage1, pacmanImage2, pacmanImage3, pacmanImage4]
+        this.pacmanImages = [pacmanImage1, pacmanImage2, pacmanImage3, pacmanImage4];
 
         this.pacmanImageIndex = 0;
     }
@@ -77,6 +81,9 @@ export default class Pacman {
         if (this.tileMap.didCollideWithEnvironment(this.x, this.y, this.currentMovingDirection)) {
             return;
         }
+        else if (this.currentMovingDirection != null && this.pacmanAnimationTimer == null) {
+            this.pacmanAnimationTimer = this.pacmanAnimationTimerDefault;
+        }
 
         switch(this.currentMovingDirection) {
             case MovingDirection.up:
@@ -94,6 +101,19 @@ export default class Pacman {
             case MovingDirection.left:
                 this.x -= this.velocity;
                 break;
+        }
+    }
+
+    #animate() {
+        if (this.pacmanAnimationTimer == null) {
+            return;
+        }
+        this.pacmanAnimationTimer--;
+        if(this.pacmanAnimationTimer == 0) {
+            this.pacmanAnimationTimer = this.pacmanAnimationTimerDefault;
+            this.pacmanImageIndex++;
+            if(this.pacmanImageIndex == this.pacmanImages.length)
+                this.pacmanImageIndex = 0;
         }
     }
 }  
