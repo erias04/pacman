@@ -17,6 +17,10 @@ export default class Pacman {
 
         this.#loadPacmanImages();
     }
+
+    Rotation = {
+        
+    }
     
     draw(ctx) {
         this.#move();
