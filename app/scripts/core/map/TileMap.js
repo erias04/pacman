@@ -15,6 +15,7 @@ export default class TileMap{
     /*  1 = Wall
         0 = Dot
         4 = PacMan
+        5 = empty
     */
     map = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -43,6 +44,9 @@ export default class TileMap{
                 else if (tile === 0) {
                     this.#drawDot(ctx, column, row, this.tileSize)
                 }
+                else {
+                    this.#drawBlank(ctx, column, row, this.tileSize)
+                }
 
                 /* // Visualisation of the images (border)
                 ctx.strokeStyle = "yellow";
@@ -54,6 +58,12 @@ export default class TileMap{
 
     #drawWall(ctx, column, row, size) {
         ctx.drawImage(this.wall, column * this.tileSize, row * this.tileSize, size, size)
+    }
+
+    #drawBlank(ctx, column, row, size) {
+        // Set different color when eating a dot the background will be this color
+        ctx.fillStyle = 'black';
+        ctx.fillRect(column * this.tileSize, row * this.tileSize, size, size)
     }
 
     #drawDot(ctx, column, row, size) {
@@ -121,5 +131,15 @@ export default class TileMap{
             }
         }
         return false
+    }
+
+    eatDot(x, y) {
+        const row = y / this.tileSize;
+        const column = x / this.tileSize;
+        if (Number.isInteger(row) && Number.isInteger(column)) {
+            if (this.map[row][column] === 0) {
+                this.map[row][column] = 5;
+            }
+        }
     }
 }
