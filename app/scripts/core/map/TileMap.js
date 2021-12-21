@@ -65,7 +65,7 @@ export default class TileMap{
                 if (tile === 4) {
                     // Replace Pacman start with a yellowDot
                     this.map[row][column] = 0;
-                    // return new Pacman
+                    return new Pacman(column * this.titleSize, row * this.titleSize, tileSize, velocity, this);
                 }
             }
         }
