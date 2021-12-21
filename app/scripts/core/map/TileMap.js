@@ -36,6 +36,7 @@ export default class TileMap{
         for (let row = 0; row < this.map.length; row++) {
             for (let column = 0; column < this.map[row].length; column++) {
                 let tile = this.map[row][column];
+                // If commanded out, the backgound will not be recreated (awseome multiple pacman view (Hacker mode))
                 if (tile === 1) {
                     this.#drawWall(ctx, column, row, this.tileSize);
                 }
