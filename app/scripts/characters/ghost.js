@@ -1,3 +1,5 @@
+import MovingDirection from '../core/game/MovingDirection.js'
+
 export default class Ghost {
 
     constructor(x, y, tileSize, velocity, tileMap) {
