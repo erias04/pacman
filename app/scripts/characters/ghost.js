@@ -10,10 +10,41 @@ export default class Ghost {
         this.tileMap = tileMap;
 
         this.#loadImages();
+
+        this.movingDirection = Math.floor(Math.random() * Object.keys(MovingDirection).length);
+
+        this.directionTimerDefault = this.#random(10, 50);
     }
 
     draw (ctx) {
+        this.#move();
         ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize)
+    }
+
+    #move() {
+        if (!this.tileMap.didCollideWithEnvironment(this.x, this.y, this.movingDirection)) {
+            switch(this.movingDirection) {
+                case MovingDirection.up:
+                    this.y -= this.velocity;
+                    break;
+
+                case MovingDirection.up:
+                    this.y += this.velocity;
+                    break;
+
+                case MovingDirection.left:
+                    this.x -= this.velocity;
+                    break;
+
+                case MovingDirection.right:
+                    this.x += this.velocity;
+                    break;
+            }
+        }
+    }
+
+    #random(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     #loadImages () {
