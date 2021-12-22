@@ -37,6 +37,8 @@ export default class Pacman {
         this.#move();
         this.#animate();
         this.#eatDot();
+        this.#eatPowerDot();
+
         const size = this.tileSize / 2;
 
         ctx.save();
@@ -157,5 +159,12 @@ export default class Pacman {
             // this.wakaSound.play();   
         }
         
+    }
+
+    #eatPowerDot() {
+        if(this.tileMap.eatPowerDot(this.x, this.y)) {
+            
+        }
+
     }
 }  
