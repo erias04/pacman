@@ -22,4 +22,4 @@ function pause() {
 
 tileMap.setCanvasSize(canvas);
 
-setInterval(gameLoop, 1000 / 75)
+setInterval(gameLoop, 1000 / 75);
