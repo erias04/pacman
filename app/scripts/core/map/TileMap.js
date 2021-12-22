@@ -9,8 +9,15 @@ export default class TileMap{
         this.yellowDot = new Image();
         this.yellowDot.src = '/app/style/graphics/yellowDot.png';
 
+        this.pinkDot = new Image();
+        this.pinkDot.src = '/app/style/graphics/pinkDot.png';
+
         this.wall = new Image();
         this.wall.src = '/app/style/graphics/wall.png';
+
+        this.powerDot = this.pinkDot;
+        this.powerDotAnimationTimerDefault = 30;
+        this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault;
     }
 
     /*  1 = Wall
@@ -18,20 +25,21 @@ export default class TileMap{
         4 = PacMan
         5 = empty
         6 = ghost
+        7 = PowerDot
     */
     map = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
-        [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 7, 6, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-        [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 7, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-        [1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
@@ -45,6 +53,9 @@ export default class TileMap{
                 }
                 else if (tile === 0) {
                     this.#drawDot(ctx, column, row, this.tileSize)
+                }
+                else if (tile === 7) {
+                    this.#drawPowerDot(ctx, column, row, this.tileSize);
                 }
                 else {
                     this.#drawBlank(ctx, column, row, this.tileSize)
@@ -70,6 +81,20 @@ export default class TileMap{
 
     #drawDot(ctx, column, row, size) {
         ctx.drawImage(this.yellowDot, column * this.tileSize, row * this.tileSize, size, size)
+    }
+
+    #drawPowerDot(ctx, column, row, size) {
+        this.powerDotAnimationTimer--;
+        if (this.powerDotAnimationTimer === 0) {
+            this.powerDotAnimationTimer = this.powerDotAnimationTimerDefault;
+            if (this.powerDot == this.pinkDot) {
+                this.powerDot = this.yellowDot;
+            }
+            else {
+                this.powerDot = this.pinkDot;
+            }
+        }
+        ctx.drawImage(this.powerDot, column * size, row * size, size, size);
     }
 
     getPacman(velocity) {
