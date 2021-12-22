@@ -16,8 +16,12 @@ export default class Pacman {
         this.pacmanAnimationTimer = null;
 
         this.pacmanRotation = this.Rotation.right;
+        this.wakaSound = new Audio('/app/style/audio/waka.wav');
 
         this.#loadPacmanImages();
+
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        this.ambience = new AudioContext();
     }
 
     Rotation = {
@@ -144,7 +148,8 @@ export default class Pacman {
 
     #eatDot() {
         if(this.tileMap.eatDot(this.x, this.y)) {
-            // play sound
+            this.wakaSound.play();   
         }
+        
     }
 }  
