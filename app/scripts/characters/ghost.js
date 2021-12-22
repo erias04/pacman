@@ -13,11 +13,13 @@ export default class Ghost {
 
         this.movingDirection = Math.floor(Math.random() * Object.keys(MovingDirection).length);
 
-        this.directionTimerDefault = this.#random(10, 50);
+        this.directionTimerDefault = this.#random(1, 5);
+        this.directionTimer = this.directionTimerDefault;
     }
 
     draw (ctx) {
         this.#move();
+        this.#changeDirection();
         ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize)
     }
 
@@ -39,6 +41,23 @@ export default class Ghost {
                 case MovingDirection.right:
                     this.x += this.velocity;
                     break;
+            }
+        }
+    }
+
+    #changeDirection() {
+        this.directionTimer--;
+        let newMoveDirection = null;
+        if (this.directionTimer == 0) {
+            this.directionTimer = this.directionTimerDefault;
+            newMoveDirection = Math.floor(Math.random() * Object.keys(MovingDirection).length);
+        }
+
+        if (newMoveDirection != null && this.movingDirection != newMoveDirection) {
+            if (Number.isInteger(this.x / this.tileSize) && Number.isInteger(this.y / this.tileSize)) {
+                if (!this.tileMap.didCollideWithEnvironment(this.x, this.y, newMoveDirection)) {
+                    this.movingDirection = newMoveDirection;
+                }
             }
         }
     }
