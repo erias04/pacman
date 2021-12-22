@@ -16,7 +16,9 @@ export default class Pacman {
         this.pacmanAnimationTimer = null;
 
         this.pacmanRotation = this.Rotation.right;
+
         this.wakaSound = new Audio('/app/style/audio/waka.wav');
+        this.powerDotSound = new Audio('/app/style/audio/power_dot.wav');
 
         this.madeFirstMove = false;
 
@@ -163,7 +165,7 @@ export default class Pacman {
 
     #eatPowerDot() {
         if(this.tileMap.eatPowerDot(this.x, this.y)) {
-            
+            this.powerDotSound.play();
         }
 
     }
