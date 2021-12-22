@@ -148,7 +148,7 @@ export default class Pacman {
 
     #eatDot() {
         if(this.tileMap.eatDot(this.x, this.y)) {
-            this.wakaSound.play();   
+            // this.wakaSound.play();   
         }
         
     }

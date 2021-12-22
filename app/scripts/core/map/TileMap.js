@@ -1,4 +1,5 @@
 import Pacman from '../../characters/Pacman.js'
+import Ghost from '../../characters/Ghost.js'
 import MovingDirection from '../game/MovingDirection.js'
 
 export default class TileMap{
@@ -16,20 +17,21 @@ export default class TileMap{
         0 = Dot
         4 = PacMan
         5 = empty
+        6 = ghost
     */
     map = [
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 1],
-        [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-        [1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 0, 1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1],
         [1, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 1],
         [1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1],
-        [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
+        [1, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1],
         [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     ]
 
@@ -81,6 +83,21 @@ export default class TileMap{
                 }
             }
         }
+    }
+
+    getGhosts(velocity) {
+        const ghosts = [];
+
+        for (let row = 0; row < this.map.length; row++) {
+            for (let column = 0; column < this.map[row].length; column++) {
+                const tile = this.map[row][column];
+                if (tile == 6) {
+                    this.map[row][column] = 0;
+                    ghosts.push(new Ghost(column * this.tileSize, row * this.tileSize, this.tileSize, velocity, this))
+                }
+            }
+        }
+        return ghosts;
     }
     
 
