@@ -13,7 +13,11 @@ const ghosts = tileMap.getGhosts(velocity);
 function gameLoop() {
     tileMap.draw(ctx);
     pacman.draw(ctx);
-    ghosts.forEach(ghosts => ghosts.draw(ctx));
+    ghosts.forEach(ghosts => ghosts.draw(ctx, pause()));
+}
+
+function pause() {
+    return !pacman.madeFirstMove;
 }
 
 tileMap.setCanvasSize(canvas);
