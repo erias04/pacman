@@ -7,6 +7,7 @@ export default class Pacman {
         this.tileSize = tileSize;
         this.velocity = velocity;
         this.tileMap = tileMap;
+        this.timers = [];
 
         this.currentMovingDirection = null;
         this.requestedMovingDirection = null;
@@ -19,6 +20,9 @@ export default class Pacman {
 
         this.wakaSound = new Audio('/app/style/audio/waka.wav');
         this.powerDotSound = new Audio('/app/style/audio/power_dot.wav');
+
+        this.powerDotActive = false;
+        this.powerDotAboutToExpire = false;
 
         this.madeFirstMove = false;
 
@@ -157,7 +161,7 @@ export default class Pacman {
     }
 
     #eatDot() {
-        if(this.tileMap.eatDot(this.x, this.y)) {
+        if(this.tileMap.eatDot(this.x, this.y) && this.madeFirstMove) {
             // this.wakaSound.play();   
         }
         
@@ -165,7 +169,25 @@ export default class Pacman {
 
     #eatPowerDot() {
         if(this.tileMap.eatPowerDot(this.x, this.y)) {
+            this.powerDotActive = true;
+            this.powerDotAboutToExpire = false;
             this.powerDotSound.play();
+            this.timers.forEach((timer) => clearTimeout(timer));
+            this.timers = [];
+
+            let powerDotTimer = setTimeout(() => {
+                this.powerDotActive = false;
+                this.powerDotAboutToExpire = false;
+            }, 1000 * 6)
+
+            this.timers.push(powerDotTimer);
+
+            let powerDotAboutToExpire = setTimeout(() => {
+                this.powerDotAboutToExpire = true;
+            }, 1000 * 3)
+
+            this.timers.push(powerDotAboutToExpire);
+
         }
 
     }
