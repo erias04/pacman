@@ -28,6 +28,16 @@ export default class Ghost {
         ctx.drawImage(this.image, this.x, this.y, this.tileSize, this.tileSize)
     }
 
+    collideWith(pacman) {
+        const size = this.tileSize / 2;
+        if (this.x < pacman.x + size && this.x + size > pacman.x && this.y < pacman.y + size && this.y + size > pacman.y) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     #setImage(ctx, pacman) {
         if(pacman.powerDotActive) {
             this.#setImageWhenPowerDotIsActive(pacman)

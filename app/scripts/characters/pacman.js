@@ -20,6 +20,7 @@ export default class Pacman {
 
         this.wakaSound = new Audio('/app/style/audio/waka.wav');
         this.powerDotSound = new Audio('/app/style/audio/power_dot.wav');
+        this.eatGhostSound = new Audio('/app/style/audio/eat_ghost.wav');
 
         this.powerDotActive = false;
         this.powerDotAboutToExpire = false;
@@ -39,11 +40,14 @@ export default class Pacman {
         up: 3
     }
     
-    draw(ctx) {
-        this.#move();
-        this.#animate();
+    draw(ctx, pause, ghosts) {
+        if(!pause) {
+            this.#move();
+            this.#animate();
+        }
         this.#eatDot();
         this.#eatPowerDot();
+        this.#eatGhost(ghosts);
 
         const size = this.tileSize / 2;
 
@@ -190,5 +194,15 @@ export default class Pacman {
 
         }
 
+    }
+
+    #eatGhost(ghosts) {
+        if (this.powerDotActive) {
+            const collideGhosts = ghosts.filter((ghost) => ghost.collideWith(this));
+            collideGhosts.forEach((ghost) => {
+                ghosts.splice(ghosts.indexOf(ghost), 1);
+                this.eatGhostSound.play();
+            });
+        }
     }
 }  

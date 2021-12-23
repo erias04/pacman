@@ -10,14 +10,35 @@ const tileMap = new TileMap(tileSize);
 const pacman = tileMap.getPacman(velocity);
 const ghosts = tileMap.getGhosts(velocity);
 
+let gameOver = false;
+let gameWin = false;
+
+const gameOverSound = new Audio('/app/style/audio/gameOver.wav');
+const gameWinSound = new Audio('/app/style/audio/gameWin.wav');
+
 function gameLoop() {
     tileMap.draw(ctx);
-    pacman.draw(ctx);
+    pacman.draw(ctx, pause(), ghosts);
     ghosts.forEach(ghosts => ghosts.draw(ctx, pause(), pacman));
+    checkGameOver();
+}
+
+function checkGameOver() {
+    if (!gameOver) {
+        gameOver = isGameOver();
+        if (gameOver) {
+            gameOverSound.play();
+        }
+    }
+
+}
+
+function isGameOver() {
+    return ghosts.some(ghost => !pacman.powerDotActive && ghost.collideWith(pacman))
 }
 
 function pause() {
-    return !pacman.madeFirstMove;
+    return !pacman.madeFirstMove || gameOver;
 }
 
 tileMap.setCanvasSize(canvas);
