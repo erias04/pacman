@@ -144,6 +144,17 @@
           let gameCoordinator = new GameCoordinator();
         }
       </script>
+      <script type="text/javascript" src="lib/webOSTVjs-1.2.4/webOSTV.js"></script>
+      <script>
+        window.addEventListener("keydown", function(inEvent){
+          if (window.event) {
+            if (inEvent.keyCode == 461) {
+              console.log('back')
+              webOS.platformBack();
+            };
+          }
+        });
+      </script>
     </div>
   </body>
 </html>
